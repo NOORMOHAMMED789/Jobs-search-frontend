@@ -10,6 +10,7 @@ export default function SearchField() {
       <input
         type="text"
         value={inputVal}
+        onChange={(e) => setInputVal(e.target.value)}
         className="w-[100%] h-[25px] bg-transparent text-[#fff] text-[18px] outline-none"
       />
       <Image

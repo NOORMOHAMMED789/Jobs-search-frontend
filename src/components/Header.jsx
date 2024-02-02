@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <div className="h-[80px] bg-[#303B54] flex justify-around items-center mb-[56px]">
-      <div className="flex justify-between items-center w-[80%]">
+    <div className="h-[80px] bg-[#303B54] flex items-center mb-[56px]">
+      <div className="flex justify-between items-center w-[80%] mr-[25px] pl-[67px]">
         <div className="text-[#fff] text-[24px]">Jobs</div>
         <SearchField />
         <div className="h-[45px] w-[45px] flex justify-center flex-col items-center rounded-full bg-[#242D40] ">
