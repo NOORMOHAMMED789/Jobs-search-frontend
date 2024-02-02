@@ -6,9 +6,9 @@ export default function Header() {
   return (
     <div className="h-[80px] bg-[#303B54] flex items-center mb-[56px]">
       <div className="flex justify-between items-center w-[80%] mr-[25px] pl-[67px]">
-        <div className="text-[#fff] text-[24px]">Jobs</div>
+        <div className="text-[#fff] text-[24px] mr-[250px]">Jobs</div>
         <SearchField />
-        <div className="h-[45px] w-[45px] flex justify-center flex-col items-center rounded-full bg-[#242D40] ">
+        <div className="h-[45px] ml-[80px] w-[45px] flex justify-center flex-col items-center rounded-full bg-[#242D40] ">
           <Image
             src="/Images/head.png"
             alt="image"
@@ -24,7 +24,7 @@ export default function Header() {
           />
         </div>
       </div>
-      <div className="h-[45px] relative flex justify-center items-center w-[45px] rounded-full bg-[#242D40]">
+      <div className="h-[45px] relative flex justify-center items-center w-[45px] ml-[10px] rounded-full bg-[#242D40]">
         <Image
           src="/Images/notification-icon.png"
           alt="notification-icon"

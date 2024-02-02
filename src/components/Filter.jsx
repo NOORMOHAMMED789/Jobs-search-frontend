@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default function Filter() {
@@ -11,10 +12,64 @@ export default function Filter() {
         { name: "Apple", code: "Ap" },
       ],
     },
+    {
+      name: "Location",
+      companies: [
+        { name: "Amazon", code: "AZ" },
+        { name: "CVS Health", code: "Ch" },
+        { name: "Toyoto", code: "Ty" },
+        { name: "Apple", code: "Ap" },
+      ],
+    },
+    {
+      name: "Date Posted",
+      companies: [
+        { name: "Amazon", code: "AZ" },
+        { name: "CVS Health", code: "Ch" },
+        { name: "Toyoto", code: "Ty" },
+        { name: "Apple", code: "Ap" },
+      ],
+    },
+    {
+      name: "Salary Range",
+      companies: [
+        { name: "Amazon", code: "AZ" },
+        { name: "CVS Health", code: "Ch" },
+        { name: "Toyoto", code: "Ty" },
+        { name: "Apple", code: "Ap" },
+      ],
+    },
+    {
+      name: "Skills",
+      companies: [
+        { name: "Amazon", code: "AZ" },
+        { name: "CVS Health", code: "Ch" },
+        { name: "Toyoto", code: "Ty" },
+        { name: "Apple", code: "Ap" },
+      ],
+    },
+    {
+      name: "Experience",
+      companies: [
+        { name: "Amazon", code: "AZ" },
+        { name: "CVS Health", code: "Ch" },
+        { name: "Toyoto", code: "Ty" },
+        { name: "Apple", code: "Ap" },
+      ],
+    },
+    {
+      name: "Education",
+      companies: [
+        { name: "Amazon", code: "AZ" },
+        { name: "CVS Health", code: "Ch" },
+        { name: "Toyoto", code: "Ty" },
+        { name: "Apple", code: "Ap" },
+      ],
+    },
   ];
   return (
-    <div className="w-[100%]">
-      <div className="text-white gap-10 border-b h-[65px] relative">
+    <div className="w-[100%] dark-shadow-2xl">
+      <div className="text-white gap-10 border-b-[0.5px] h-[65px] relative">
         <div className="text-[20px] leading-[25px] pl-[15px] absolute bottom-[10px]">
           Filter by
         </div>
@@ -30,10 +85,17 @@ export default function Filter() {
           return (
             <div
               key={id}
-              className="text-[#fff] text-[16px] pl-[26px] pb-[10px] mt-[15px] border-b w-[100%]"
+              className="text-[#fff] text-[16px] pl-[26px] pb-[10px] relative mt-[15px] border-b w-[100%]"
             >
               <label>{item.name}</label>
-              <input type="checkbox" value={item.name} />
+              {/* <input type="checkbox" value={item.name} /> */}
+              <Image
+                src="/Images/arrow.png"
+                alt="arrow-mark"
+                width={11}
+                height={6}
+                className="absolute right-[25px] bottom-[50%]"
+              />
             </div>
           );
         })}
