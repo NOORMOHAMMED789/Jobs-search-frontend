@@ -75,7 +75,6 @@ export default function Filter() {
     console.log("id", id);
     setIdVal(id);
     setSShowSubFilters(true);
-    if (showSubFilters) setSShowSubFilters(false);
   }
   return (
     <div className="w-[100%] dark-shadow-2xl">
@@ -103,7 +102,9 @@ export default function Filter() {
               <label>{item.name}</label>
               <div
                 className={`${
-                  showSubFilters && idVal == id ? "block" : "hidden"
+                  showSubFilters && idVal == id
+                    ? "block trnasition transition-all ease-in-out duration-200"
+                    : "hidden transition-all ease-in-out duration-400"
                 } pt-3`}
               >
                 {item.companies.map((comp, id) => {
