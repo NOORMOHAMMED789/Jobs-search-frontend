@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 export default function Filter() {
   const [showSubFilters, setSShowSubFilters] = useState(false);
-  const [id, setId] = useState(0);
+  const [idVal, setIdVal] = useState(0);
   let array = [
     {
       name: "Company",
@@ -71,8 +71,9 @@ export default function Filter() {
     },
   ];
 
-  function openSubFilters(company, id) {
-    setId(company);
+  function openSubFilters(id) {
+    console.log("id", id);
+    setIdVal(id);
     setSShowSubFilters(true);
     if (showSubFilters) setSShowSubFilters(false);
   }
@@ -93,15 +94,25 @@ export default function Filter() {
         {array.map((item, id) => {
           return (
             <div
+              onClick={() => openSubFilters(id)}
               key={id}
-              className="text-[#fff] text-[16px] pl-[26px] pb-[10px] relative mt-[15px] border-b w-[100%]"
+              className={`text-[#fff] hover:cursor-pointer hover:${
+                showSubFilters ? "" : "bg-gray-900"
+              } text-[16px] pl-[26px] pb-[10px] relative pt-[15px] border-b w-[100%]`}
             >
               <label>{item.name}</label>
               <div
-                className={`${showSubFilters && id == id ? "block" : "hidden"}`}
+                className={`${
+                  showSubFilters && idVal == id ? "block" : "hidden"
+                } pt-3`}
               >
                 {item.companies.map((comp, id) => {
-                  return <div key={id}>{comp.name}</div>;
+                  return (
+                    <div key={id} className="flex gap-3 pb-2">
+                      <input type="checkbox" value={comp.code} />
+                      <label key={id}>{comp.name}</label>
+                    </div>
+                  );
                 })}
               </div>
               <Image
@@ -109,8 +120,8 @@ export default function Filter() {
                 alt="arrow-mark"
                 width={11}
                 height={6}
-                onClick={() => openSubFilters(item)}
-                className="absolute right-[25px] bottom-[50%] cursor-pointer"
+                onClick={() => openSubFilters(id)}
+                className="absolute right-[25px] top-[25px] cursor-pointer"
               />
             </div>
           );
