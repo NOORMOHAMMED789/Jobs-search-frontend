@@ -8,13 +8,19 @@ export default function Header() {
       <div className="flex justify-between items-center w-[80%]">
         <div className="text-[#fff] text-[24px]">Jobs</div>
         <SearchField />
-        <div className="h-[45px] w-[45px] rounded-full bg-[#242D40] ">
+        <div className="h-[45px] w-[45px] flex justify-center flex-col items-center rounded-full bg-[#242D40] ">
           <Image
-            src="/Images/Person-icon.png"
+            src="/Images/head.png"
             alt="image"
-            className="w-full h-full"
-            width={45}
-            height={45}
+            className=""
+            width={12}
+            height={12}
+          />
+          <Image
+            src="/Images/body.png"
+            alt="body-image"
+            width={18}
+            height={10}
           />
         </div>
       </div>
