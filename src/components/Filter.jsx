@@ -75,6 +75,7 @@ export default function Filter() {
     console.log("id", id);
     setIdVal(id);
     setSShowSubFilters(true);
+    if (showSubFilters) setSShowSubFilters(false);
   }
   return (
     <div className="w-[100%] dark-shadow-2xl">
@@ -103,8 +104,8 @@ export default function Filter() {
               <div
                 className={`${
                   showSubFilters && idVal == id
-                    ? "block trnasition transition-all ease-in-out duration-200"
-                    : "hidden transition-all ease-in-out duration-400"
+                    ? "block transition duration-400"
+                    : "hidden transition duration-400"
                 } pt-3`}
               >
                 {item.companies.map((comp, id) => {
@@ -122,7 +123,11 @@ export default function Filter() {
                 width={11}
                 height={6}
                 onClick={() => openSubFilters(id)}
-                className="absolute right-[25px] top-[25px] cursor-pointer"
+                className={`${
+                  showSubFilters && idVal == id
+                    ? "rotate-180 transition duration-500"
+                    : "rotate-0 transition duration-500"
+                } absolute right-[25px] top-[25px] cursor-pointer`}
               />
             </div>
           );
