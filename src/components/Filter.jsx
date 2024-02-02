@@ -1,7 +1,10 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Filter() {
+  const [showSubFilters, setSShowSubFilters] = useState(false);
+  const [id, setId] = useState(0);
   let array = [
     {
       name: "Company",
@@ -67,6 +70,12 @@ export default function Filter() {
       ],
     },
   ];
+
+  function openSubFilters(company, id) {
+    setId(company);
+    setSShowSubFilters(true);
+    if (showSubFilters) setSShowSubFilters(false);
+  }
   return (
     <div className="w-[100%] dark-shadow-2xl">
       <div className="text-white gap-10 border-b-[0.5px] h-[65px] relative">
@@ -88,13 +97,20 @@ export default function Filter() {
               className="text-[#fff] text-[16px] pl-[26px] pb-[10px] relative mt-[15px] border-b w-[100%]"
             >
               <label>{item.name}</label>
-              {/* <input type="checkbox" value={item.name} /> */}
+              <div
+                className={`${showSubFilters && id == id ? "block" : "hidden"}`}
+              >
+                {item.companies.map((comp, id) => {
+                  return <div key={id}>{comp.name}</div>;
+                })}
+              </div>
               <Image
                 src="/Images/arrow.png"
                 alt="arrow-mark"
                 width={11}
                 height={6}
-                className="absolute right-[25px] bottom-[50%]"
+                onClick={() => openSubFilters(item)}
+                className="absolute right-[25px] bottom-[50%] cursor-pointer"
               />
             </div>
           );
