@@ -86,7 +86,7 @@ export default function Filter() {
         <div className="absolute right-[75px] text-[12px] bottom-[10px] leading-[19px]">
           3 filter applied
         </div>
-        <div className="underline absolute right-[25px] bottom-[12px]">
+        <div className="underline absolute right-[25px] bottom-[12px] cursor-pointer">
           Clear all
         </div>
       </div>
@@ -94,13 +94,17 @@ export default function Filter() {
         {array.map((item, id) => {
           return (
             <div
-              onClick={() => openSubFilters(id)}
               key={id}
               className={`text-[#fff] hover:cursor-pointer hover:${
                 showSubFilters ? "" : "bg-gray-900"
               } text-[16px] pl-[26px] pb-[10px] relative pt-[15px] border-b w-[100%]`}
             >
-              <label>{item.name}</label>
+              <label
+                onClick={() => openSubFilters(id)}
+                className="cursor-pointer"
+              >
+                {item.name}
+              </label>
               <div
                 className={`${
                   showSubFilters && idVal == id
