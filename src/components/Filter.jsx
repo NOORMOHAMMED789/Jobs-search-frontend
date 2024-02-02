@@ -124,14 +124,14 @@ export default function Filter() {
               <Image
                 src="/Images/arrow.png"
                 alt="arrow-mark"
-                width={11}
-                height={6}
+                width={16}
+                height={10}
                 onClick={() => openSubFilters(id)}
                 className={`${
                   showSubFilters && idVal == id
                     ? "rotate-180 transition duration-500"
                     : "rotate-0 transition duration-500"
-                } absolute right-[25px] top-[25px] cursor-pointer`}
+                } absolute right-[25px] top-[25px] cursor-pointer p-1`}
               />
             </div>
           );
