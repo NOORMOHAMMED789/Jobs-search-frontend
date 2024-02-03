@@ -9,7 +9,7 @@ export default function Jobs() {
       let response = await fetch(
         "http://demo6163739.mockable.io/filteredData",
         {
-          method: "POST",
+          method: "GET",
           headers: {
             "Application-Type": "application/json",
             "Content-Type": "text/xml",
