@@ -1,9 +1,11 @@
 const actions = {
   searchText: "SEARCH_TEXT",
+  search: "SEARCH",
 };
 
 const initialState = {
   searchText: "",
+  search: false,
 };
 
 const reducer = (state, action) => {
@@ -13,6 +15,8 @@ const reducer = (state, action) => {
     case actions.searchText:
       res = { ...state, searchText: data };
       break;
+    case actions.search:
+      res = { ...state, search: data };
     default:
       break;
   }
