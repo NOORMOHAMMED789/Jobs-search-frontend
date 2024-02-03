@@ -6,7 +6,7 @@ import { useData } from "@/context/DataProvider";
 export default function Jobs() {
   const [jobPosts, setJobPosts] = useState([]);
   const {
-    state: { search, searchText },
+    state: { search, searchText, getAllPosts },
   } = useData();
   async function fetchJobPosts() {
     try {
@@ -34,7 +34,7 @@ export default function Jobs() {
 
   useEffect(() => {
     fetchJobPosts();
-  }, [searchText == ""]);
+  }, [searchText == "", getAllPosts]);
 
   async function appliedFilteredJobPosts() {
     try {

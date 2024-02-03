@@ -12,7 +12,7 @@ export default function Filter() {
   const [idVal, setIdVal] = useState(0);
   const [loading, setLoading] = useState(false);
   const {
-    state: { searchText, search },
+    state: { searchText, search, getAllPosts },
     dispatch,
   } = useData();
   let array = [
@@ -116,7 +116,7 @@ export default function Filter() {
   function onInputChange(e, name, id) {
     setCheckVal(name);
     if (e.target.checked) dispatch({ type: actions.search, data: !search });
-    else dispatch({ type: actions.searchText, data: "" });
+    else dispatch({ type: actions.getAllPosts, data: !getAllPosts });
   }
 
   return (
