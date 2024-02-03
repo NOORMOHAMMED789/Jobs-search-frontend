@@ -1,7 +1,36 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
 export default function Jobs() {
+  const [jobPosts, setJobPosts] = useState([]);
+  async function fetchJobPosts() {
+    try {
+      let response = await fetch(
+        "http://demo6163739.mockable.io/filteredData",
+        {
+          method: "POST",
+          headers: {
+            "Application-Type": "application/json",
+            "Content-Type": "text/xml",
+          },
+        }
+      );
+      console.log("response post", response);
+      if (response.status == 200) {
+        let data = await response.json();
+        console.log("filtered data is", data);
+        setJobPosts(data.filteredData);
+      }
+    } catch (error) {
+      console.log(error);
+      setJobPosts([]);
+    }
+  }
+
+  useEffect(() => {
+    fetchJobPosts();
+  }, []);
   return (
     <div className="bg-[#1D2331] rounded-2xl">
       <div className="mt-[30px] p-10">
@@ -9,7 +38,7 @@ export default function Jobs() {
           Jobs
         </div>
         <div className="p-2 mt-[25px] pl-[15px]">
-          <Card />
+          <Card jobPosts={jobPosts} />
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-export default function Card() {
+export default function Card(props) {
   let data = [
     {
       src: "/Images/apple.png",
@@ -9,6 +9,8 @@ export default function Card() {
       address1: "Apple Incorporations",
       address2: "Mumbai, Maharashtra, India",
       percent: 78,
+      date: "Posted 1 day ago",
+      applicants: 10,
     },
     {
       src: "/Images/apple.png",
@@ -16,6 +18,8 @@ export default function Card() {
       address1: "Apple Incorporations",
       address2: "Mumbai, Maharashtra, India",
       percent: 78,
+      date: "Posted 1 day ago",
+      applicants: 10,
     },
     {
       src: "/Images/apple.png",
@@ -23,6 +27,8 @@ export default function Card() {
       address1: "Apple Incorporations",
       address2: "Mumbai, Maharashtra, India",
       percent: 78,
+      date: "Posted 1 day ago",
+      applicants: 10,
     },
     {
       src: "/Images/apple.png",
@@ -30,6 +36,8 @@ export default function Card() {
       address1: "Apple Incorporations",
       address2: "Mumbai, Maharashtra, India",
       percent: 78,
+      date: "Posted 1 day ago",
+      applicants: 10,
     },
     {
       src: "/Images/apple.png",
@@ -37,6 +45,8 @@ export default function Card() {
       address1: "Apple Incorporations",
       address2: "Mumbai, Maharashtra, India",
       percent: 78,
+      date: "Posted 1 day ago",
+      applicants: 10,
     },
     {
       src: "/Images/apple.png",
@@ -44,6 +54,8 @@ export default function Card() {
       address1: "Apple Incorporations",
       address2: "Mumbai, Maharashtra, India",
       percent: 78,
+      date: "Posted 1 day ago",
+      applicants: 10,
     },
     {
       src: "/Images/apple.png",
@@ -51,6 +63,8 @@ export default function Card() {
       address1: "Apple Incorporations",
       address2: "Mumbai, Maharashtra, India",
       percent: 78,
+      date: "Posted 1 day ago",
+      applicants: 10,
     },
     {
       src: "/Images/apple.png",
@@ -58,6 +72,8 @@ export default function Card() {
       address1: "Apple Incorporations",
       address2: "Mumbai, Maharashtra, India",
       percent: 78,
+      date: "Posted 1 day ago",
+      applicants: 10,
     },
     {
       src: "/Images/apple.png",
@@ -65,6 +81,8 @@ export default function Card() {
       address1: "Apple Incorporations",
       address2: "Mumbai, Maharashtra, India",
       percent: 78,
+      date: "Posted 1 day ago",
+      applicants: 10,
     },
     {
       src: "/Images/apple.png",
@@ -72,11 +90,13 @@ export default function Card() {
       address1: "Apple Incorporations",
       address2: "Mumbai, Maharashtra, India",
       percent: 78,
+      date: "Posted 1 day ago",
+      applicants: 10,
     },
   ];
   return (
     <div>
-      {data.map((card, id) => {
+      {props.jobPosts.map((card, id) => {
         return (
           <div
             key={id}
@@ -118,10 +138,10 @@ export default function Card() {
             <div className="bg-[#454e63] w-full flex justify-between items-center mt-[16px] rounded-b-[12.94px] py-4 px-10">
               <div className="flex justify-center items-center gap-1">
                 <div className="text-[16px] leading-[33px] font-light text-[#E3F1FD]">
-                  Posted 1 day ago
+                  {card.date}
                 </div>
                 <div className="text-[16px] leading-[33px] font-light text-[#E3F1FD]">
-                  . 10 applicants
+                  . {card.applicants} applicants
                 </div>
               </div>
               <div className="flex gap-10">

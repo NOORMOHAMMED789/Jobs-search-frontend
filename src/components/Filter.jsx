@@ -8,6 +8,7 @@ export default function Filter() {
   const [appliedFilters, setAppliedFilters] = useState([]);
   const [checkVal, setCheckVal] = useState("");
   const [idVal, setIdVal] = useState(0);
+  const [loading, setLoading] = useState(false);
   let array = [
     {
       name: "Company",
@@ -75,6 +76,7 @@ export default function Filter() {
   ];
 
   async function fetchData() {
+    setLoading(true);
     try {
       let response = await fetch("http://demo6163739.mockable.io/data", {
         method: "GET",
@@ -86,9 +88,11 @@ export default function Filter() {
       if (response.status == 200) {
         let data = await response.json();
         console.log("data is", data);
+        setLoading(false);
         setFilters(data.filters);
       }
     } catch (error) {
+      setLoading(false);
       console.log(error);
       setFilters(array);
     }
@@ -127,55 +131,57 @@ export default function Filter() {
         </div>
       </div>
       <div className="w-[100%]">
-        {filters.map((item, id) => {
-          return (
-            <div
-              key={id}
-              className={`text-[#fff] hover:cursor-pointer hover:${
-                showSubFilters ? "" : "bg-gray-900"
-              } text-[16px] pl-[26px] pb-[10px] relative pt-[15px] border-b w-[100%]`}
-            >
-              <label
-                onClick={() => openSubFilters(id)}
-                className="cursor-pointer"
-              >
-                {item.name}
-              </label>
+        {loading && <div>Please wait...</div>}
+        {!loading &&
+          filters.map((item, id) => {
+            return (
               <div
-                className={`${
-                  showSubFilters && idVal == id
-                    ? "block transition duration-400"
-                    : "hidden transition duration-400"
-                } pt-3`}
+                key={id}
+                className={`text-[#fff] hover:cursor-pointer hover:${
+                  showSubFilters ? "" : "bg-gray-900"
+                } text-[16px] pl-[26px] pb-[10px] relative pt-[15px] border-b w-[100%]`}
               >
-                {item.companies.map((comp, id) => {
-                  return (
-                    <div key={id} className="flex gap-3 pb-2">
-                      <input
-                        onChange={(e) => onInputChange(e, comp.name, id)}
-                        type="checkbox"
-                        value={comp.code}
-                      />
-                      <label key={id}>{comp.name}</label>
-                    </div>
-                  );
-                })}
+                <label
+                  onClick={() => openSubFilters(id)}
+                  className="cursor-pointer"
+                >
+                  {item.name}
+                </label>
+                <div
+                  className={`${
+                    showSubFilters && idVal == id
+                      ? "block transition duration-400"
+                      : "hidden transition duration-400"
+                  } pt-3`}
+                >
+                  {item.companies.map((comp, itemId) => {
+                    return (
+                      <div key={itemId} className="flex gap-3 pb-2">
+                        <input
+                          onChange={(e) => onInputChange(e, comp.name, itemId)}
+                          type="checkbox"
+                          value={comp.code}
+                        />
+                        <label key={id}>{comp.name}</label>
+                      </div>
+                    );
+                  })}
+                </div>
+                <Image
+                  src="/Images/arrow.png"
+                  alt="arrow-mark"
+                  width={16}
+                  height={10}
+                  onClick={() => openSubFilters(id)}
+                  className={`${
+                    showSubFilters && idVal == id
+                      ? "rotate-180 transition duration-500"
+                      : "rotate-0 transition duration-500"
+                  } absolute right-[25px] top-[25px] cursor-pointer p-1`}
+                />
               </div>
-              <Image
-                src="/Images/arrow.png"
-                alt="arrow-mark"
-                width={16}
-                height={10}
-                onClick={() => openSubFilters(id)}
-                className={`${
-                  showSubFilters && idVal == id
-                    ? "rotate-180 transition duration-500"
-                    : "rotate-0 transition duration-500"
-                } absolute right-[25px] top-[25px] cursor-pointer p-1`}
-              />
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );
