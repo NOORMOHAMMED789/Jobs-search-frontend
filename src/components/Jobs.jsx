@@ -7,7 +7,7 @@ export default function Jobs() {
   async function fetchJobPosts() {
     try {
       let response = await fetch(
-        "http://demo6163739.mockable.io/filteredData",
+        "https://demo6163739.mockable.io/filteredData",
         {
           method: "GET",
           headers: {
