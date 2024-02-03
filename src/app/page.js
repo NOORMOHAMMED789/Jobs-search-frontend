@@ -8,7 +8,7 @@ export default function Home() {
       <div className="w-[340px] ml-[67px] h-[100%] rounded-lg drop-shadow-2xl flex justify-center items-center bg-[#0a0d13]">
         <Filter />
       </div>
-      <div className="w-[850px]  ml-[30px]">
+      <div className="w-[860px]  ml-[30px]">
         <div className="flex justify-between items-center">
           <div className="text-[#fff] text-[20px] leading-[20px]">
             SEARCH RESULTS/JOBS - 2049 results
