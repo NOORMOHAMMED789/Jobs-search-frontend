@@ -80,9 +80,9 @@ export default function Card() {
         return (
           <div
             key={id}
-            className="w-full mb-[20px] h-[204px] bg-[#323C52] rounded-[12.94px] p-11"
+            className="w-full mb-[20px] h-[204px] bg-[#323C52] rounded-[12.94px]"
           >
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center p-11">
               <div className="flex gap-10">
                 <div>
                   <Image
@@ -104,7 +104,7 @@ export default function Card() {
                   </div>
                 </div>
               </div>
-              <div className="flex gap-10">
+              <div className="flex justify-center items-center gap-10">
                 <div className="text-[#fff] text-[16px] leading-[26px] font-bold">
                   skill match
                 </div>
@@ -115,7 +115,29 @@ export default function Card() {
                 </div>
               </div>
             </div>
-            <div className="bg-[#454e63]"></div>
+            <div className="bg-[#454e63] w-full flex justify-between items-center mt-[16px] rounded-b-[12.94px] py-4 px-10">
+              <div className="flex justify-center items-center gap-1">
+                <div className="text-[16px] leading-[33px] font-light text-[#E3F1FD]">
+                  Posted 1 day ago
+                </div>
+                <div className="text-[16px] leading-[33px] font-light text-[#E3F1FD]">
+                  . 10 applicants
+                </div>
+              </div>
+              <div className="flex gap-10">
+                <div className="w-[170px] h-[36px] bg-[#5CA4A9] rounded-[47px] flex justify-center items-center text-[14px] leading-[25px] text-[#fff]">
+                  Apply now
+                </div>
+                <div>
+                  <Image
+                    src="/Images/bookmark.png"
+                    alt="bookmark-image"
+                    width={20}
+                    height={28}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         );
       })}

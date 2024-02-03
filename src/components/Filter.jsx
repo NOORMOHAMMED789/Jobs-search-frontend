@@ -85,17 +85,17 @@ export default function Filter() {
       });
       if (response.status == 200) {
         let data = await response.json();
-        // console.log("data is", data);
+        console.log("data is", data);
         setFilters(data.filters);
       }
     } catch (error) {
-      // console.log(error);
+      console.log(error);
       setFilters(array);
     }
   }
 
   useEffect(() => {
-    // fetchData();
+    fetchData();
   }, []);
   function openSubFilters(id) {
     console.log("id", id);
@@ -127,7 +127,7 @@ export default function Filter() {
         </div>
       </div>
       <div className="w-[100%]">
-        {array.map((item, id) => {
+        {filters.map((item, id) => {
           return (
             <div
               key={id}
