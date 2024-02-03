@@ -1,5 +1,6 @@
 "use client";
 import { useData } from "@/context/DataProvider";
+import { actions } from "@/context/State";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
@@ -11,9 +12,9 @@ export default function Filter() {
   const [idVal, setIdVal] = useState(0);
   const [loading, setLoading] = useState(false);
   const {
-    state: { searchText },
+    state: { searchText, search },
+    dispatch,
   } = useData();
-  console.log("searchtext", searchText);
   let array = [
     {
       name: "Company",
@@ -113,15 +114,11 @@ export default function Filter() {
     if (showSubFilters) setSShowSubFilters(false);
   }
   function onInputChange(e, name, id) {
-    console.log("checked", e.target.checked, name);
     setCheckVal(name);
-    if (!e.target.checked) setCheckVal("");
-    setAppliedFilters([]);
+    if (e.target.checked) dispatch({ type: actions.search, data: !search });
+    else dispatch({ type: actions.searchText, data: "" });
   }
 
-  useEffect(() => {
-    if (checkVal) setAppliedFilters(checkVal);
-  }, [checkVal]);
   return (
     <div className="w-[100%] dark-shadow-2xl">
       <div className="text-white gap-10 border-b-[0.5px] h-[65px] relative">
@@ -131,7 +128,10 @@ export default function Filter() {
         <div className="absolute right-[75px] text-[12px] bottom-[10px] leading-[19px]">
           {`${appliedFilters.length} filters applied`}
         </div>
-        <div className="underline absolute right-[25px] bottom-[12px] cursor-pointer">
+        <div
+          onClick={() => dispatch({ type: actions.searchText, data: "" })}
+          className="underline absolute right-[25px] bottom-[12px] cursor-pointer"
+        >
           Clear all
         </div>
       </div>
@@ -167,7 +167,9 @@ export default function Filter() {
                           type="checkbox"
                           value={comp.code}
                         />
-                        <label key={id}>{comp.name}</label>
+                        <label id={id} key={id}>
+                          {comp.name}
+                        </label>
                       </div>
                     );
                   })}
