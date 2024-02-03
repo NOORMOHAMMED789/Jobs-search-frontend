@@ -22,7 +22,7 @@ export default function Home() {
                 <div>Latest</div>
                 <div>
                   <Image
-                    src="/Images/arrow.png"
+                    src="/Images/vector 125.png"
                     width={10}
                     height={10}
                     alt="arrow"

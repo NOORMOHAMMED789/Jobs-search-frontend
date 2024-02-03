@@ -8,7 +8,9 @@ export default function Jobs() {
         <div className="uppercase p-2 border-[0.5px] text-[#fff] text-[16px] leading-[20px] font-light pl-[15px] rounded-full">
           Jobs
         </div>
-        <Card />
+        <div className="p-2 mt-[25px] pl-[15px]">
+          <Card />
+        </div>
       </div>
     </div>
   );
