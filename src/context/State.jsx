@@ -1,13 +1,13 @@
 const actions = {
   searchText: "SEARCH_TEXT",
   search: "SEARCH",
-  getAllPosts:"GET_ALL_POSTS"
+  getAllPosts: "GET_ALL_POSTS",
 };
 
 const initialState = {
   searchText: "",
   search: false,
-  getAllPosts:false
+  getAllPosts: true,
 };
 
 const reducer = (state, action) => {
@@ -21,7 +21,7 @@ const reducer = (state, action) => {
       res = { ...state, search: data };
       break;
     case actions.getAllPosts:
-      res={...state, getAllPosts:data}
+      res = { ...state, getAllPosts: data };
       break;
     default:
       break;
