@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 export default function SearchField() {
-  const [inputVal, setInputVal] = useState("Analyst");
+  const [inputVal, setInputVal] = useState("");
   const {
     state: { searchText, search },
     dispatch,
@@ -14,6 +14,7 @@ export default function SearchField() {
   function onSearchChange(val) {
     setInputVal(val);
     dispatch({ type: actions.searchText, data: val });
+    if (val == "") dispatch({ type: actions.search, data: false });
   }
   function handleSubmit(e) {
     e.preventDefault();
