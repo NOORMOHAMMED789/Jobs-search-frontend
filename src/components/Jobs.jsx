@@ -33,8 +33,8 @@ export default function Jobs() {
   }
 
   useEffect(() => {
-    if (searchText == "") fetchJobPosts();
-  }, []);
+    fetchJobPosts();
+  }, [searchText == ""]);
 
   async function appliedFilteredJobPosts() {
     try {
