@@ -116,7 +116,7 @@ export default function Filter() {
   function onInputChange(e, name, id) {
     setCheckVal(name);
     if (e.target.checked) dispatch({ type: actions.search, data: !search });
-    else dispatch({ type: actions.getAllPosts, data: !getAllPosts });
+    else dispatch({ type: actions.searchText, data: "" });
   }
 
   return (
