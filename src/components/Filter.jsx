@@ -1,4 +1,5 @@
 "use client";
+import { useData } from "@/context/DataProvider";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
@@ -9,6 +10,10 @@ export default function Filter() {
   const [checkVal, setCheckVal] = useState("");
   const [idVal, setIdVal] = useState(0);
   const [loading, setLoading] = useState(false);
+  const {
+    state: { searchText },
+  } = useData();
+  console.log("searchtext", searchText);
   let array = [
     {
       name: "Company",
