@@ -1,100 +1,8 @@
+import { data } from "autoprefixer";
 import Image from "next/image";
 import React from "react";
 
-
 export default function Card(props) {
-  let data = [
-    {
-      src: "/Images/apple.png",
-      title: "Junior Art Assistant",
-      address1: "Apple Incorporations",
-      address2: "Mumbai, Maharashtra, India",
-      percent: 78,
-      date: "Posted 1 day ago",
-      applicants: 10,
-    },
-    {
-      src: "/Images/apple.png",
-      title: "Junior Art Assistant",
-      address1: "Apple Incorporations",
-      address2: "Mumbai, Maharashtra, India",
-      percent: 78,
-      date: "Posted 1 day ago",
-      applicants: 10,
-    },
-    {
-      src: "/Images/apple.png",
-      title: "Junior Art Assistant",
-      address1: "Apple Incorporations",
-      address2: "Mumbai, Maharashtra, India",
-      percent: 78,
-      date: "Posted 1 day ago",
-      applicants: 10,
-    },
-    {
-      src: "/Images/apple.png",
-      title: "Junior Art Assistant",
-      address1: "Apple Incorporations",
-      address2: "Mumbai, Maharashtra, India",
-      percent: 78,
-      date: "Posted 1 day ago",
-      applicants: 10,
-    },
-    {
-      src: "/Images/apple.png",
-      title: "Junior Art Assistant",
-      address1: "Apple Incorporations",
-      address2: "Mumbai, Maharashtra, India",
-      percent: 78,
-      date: "Posted 1 day ago",
-      applicants: 10,
-    },
-    {
-      src: "/Images/apple.png",
-      title: "Junior Art Assistant",
-      address1: "Apple Incorporations",
-      address2: "Mumbai, Maharashtra, India",
-      percent: 78,
-      date: "Posted 1 day ago",
-      applicants: 10,
-    },
-    {
-      src: "/Images/apple.png",
-      title: "Junior Art Assistant",
-      address1: "Apple Incorporations",
-      address2: "Mumbai, Maharashtra, India",
-      percent: 78,
-      date: "Posted 1 day ago",
-      applicants: 10,
-    },
-    {
-      src: "/Images/apple.png",
-      title: "Junior Art Assistant",
-      address1: "Apple Incorporations",
-      address2: "Mumbai, Maharashtra, India",
-      percent: 78,
-      date: "Posted 1 day ago",
-      applicants: 10,
-    },
-    {
-      src: "/Images/apple.png",
-      title: "Junior Art Assistant",
-      address1: "Apple Incorporations",
-      address2: "Mumbai, Maharashtra, India",
-      percent: 78,
-      date: "Posted 1 day ago",
-      applicants: 10,
-    },
-    {
-      src: "/Images/apple.png",
-      title: "Junior Art Assistant",
-      address1: "Apple Incorporations",
-      address2: "Mumbai, Maharashtra, India",
-      percent: 78,
-      date: "Posted 1 day ago",
-      applicants: 10,
-    },
-  ];
   return (
     <div>
       {props.jobPosts.map((card, id) => {
@@ -129,10 +37,25 @@ export default function Card(props) {
                 <div className="text-[#fff] text-[16px] leading-[26px] font-bold">
                   skill match
                 </div>
-                <div className="h-[72px] w-[72px] rounded-full ring-4 flex justify-center items-center pt-[25px] ring-[#5CA4A9]">
+                {/* <div className="h-[72px] w-[72px] rounded-full ring-4 flex justify-center items-center pt-[25px] ring-[#5CA4A9]">
                   <div className="h-[47px] w-[39px] text-[#fff] text-[20px] leading-[20px] font-bold">
                     {card.percent}%
                   </div>
+                </div> */}
+                {/* <Image src='\Ellipse 1497.png' width={69} height={69} alt="circle" /> */}
+                <div className="flex relative justify-center items-center z-30">
+                  <div className="absolute -z-10 border-[#E83363] border-[3px] h-[69px] w-[69px] rounded-full">
+                  </div>
+                  <div className="">
+                    <Image
+                      src="/Images/Ellipse 1498.png"
+                      alt="bookmark-image"
+                      width={69}
+                      height={69}
+                      className="z-10"
+                    />
+                  </div>
+                  <span className="absolute text-[20px] leading-[20px] align-middle font-semibold text-[#fff]">{card.percent} %</span>
                 </div>
               </div>
             </div>
