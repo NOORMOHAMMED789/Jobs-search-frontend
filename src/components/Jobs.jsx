@@ -89,28 +89,26 @@ useEffect(() => {
   // setJobPosts(filteredData);
 }, [search, searchText, checkedPost]);
 
-useEffect(() => {
-  let filteredData = [...jobPosts];
 
-  // Apply additional filtering based on checkedPost
-  const filteredPosts = filterJobPostsByCheckedTexts(jobPosts, checkedPost);
-
-  // Set jobPosts state based on filtered data
-  if (searchText !== "") {
-    filteredData = filteredData.filter(post =>
-      post.title.toLowerCase().includes(searchText.toLowerCase())
-    );
-    dispatch({ type: actions.resultsCount, data: filteredData.length });
-  } else if (checkedPost.length > 0) {
-    setJobPosts(filteredPosts);
-    dispatch({ type: actions.resultsCount, data: filteredPosts.length });
-  } else {
-    setJobPosts(jobPosts); // Set jobPosts to all jobPosts
-    dispatch({ type: actions.resultsCount, data: jobPosts.length });
-  }
-}, [search, searchText, checkedPost, jobPosts]);
-
-
+  useEffect(() => {
+    let filterdData = [...jobPosts]
+    const filteredPosts = filterJobPostsByCheckedTexts(jobPosts, checkedPost);
+    console.log("Filtered posts:", filteredPosts);
+    let value = filterdData.filter(d=>{
+        return d.title.toLowerCase().includes(searchText.toLowerCase())
+    })
+    
+    if(searchText!=""){ 
+      dispatch({type:actions.resultsCount, data:value.length})
+      setJobPosts(value)
+    }else if(!!filteredPosts){
+      setJobPosts(filteredPosts)
+    }
+    else{
+      dispatch({type:actions.resultsCount, data:0})
+      setJobPosts(jobPosts)
+    }
+  }, [search,checkedPost]);
 
   console.log("checked posts are",jobPosts)
  
