@@ -31,7 +31,7 @@ const reducer = (state, action) => {
       res = { ...state, resultsCount: data};
       break;
     case actions.jobsData:
-      res = { ...state, jobsData: data };
+      res = { ...state, jobsData: [] };
       break;
     default:
       break;

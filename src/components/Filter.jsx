@@ -50,7 +50,7 @@ export default function Filter() {
     setIdVal(id);
     if(id==value && showSubFilters) setSShowSubFilters(false)
     else setSShowSubFilters(true);
-    console.log("1111",name,jobsData,value)
+    console.log("1111",jobsData,value)
   }
   function onInputChange(e, name, id) {
     setCheckVal(name);
@@ -58,6 +58,8 @@ export default function Filter() {
     if (e.target.checked) dispatch({ type: actions.search, data: !search });
     else dispatch({ type: actions.searchText, data: "" });
   }
+
+ 
 
   return (
     <div className="w-[100%] dark-shadow-2xl">
@@ -76,7 +78,7 @@ export default function Filter() {
         </div>
       </div>
       <div className="w-[100%]">
-        {loading && <div>Please wait...</div>}
+        {loading && <div className="text-[16px] text-[#fff] flex justify-center items-center mt-10">Please wait...</div>}
         {!loading &&
           filters.map((item, id) => {
             return (

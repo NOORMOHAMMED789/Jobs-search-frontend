@@ -13,7 +13,7 @@ export default function Home() {
       </div>
       <div className="w-[900px]  ml-[30px]">
         <div className="flex justify-between items-center">
-          <div className="text-[#fff] text-[20px] leading-[20px]">
+          <div className={`text-[#fff] text-[20px] leading-[20px] ${resultsCount>0?"text-red-500 font-medium":""}`}>
            {` SEARCH RESULTS/JOBS - ${resultsCount} results`}
           </div>
           <div>
