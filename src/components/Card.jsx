@@ -3,9 +3,10 @@ import Image from "next/image";
 import React from "react";
 
 export default function Card(props) {
+  console.log("1111",props.jobPosts.length)
   return (
     <div>
-      {props.jobPosts.length>0 ? props.jobPosts.map((card, id) => {
+      {!props.loading && props.jobPosts.map((card, id) => {
         return (
           <div
             key={id}
@@ -49,7 +50,7 @@ export default function Card(props) {
                       className="z-10"
                     />
                   </div>
-                  <span className="absolute text-[20px] leading-[20px] align-middle font-semibold text-[#fff]">{card.percent} %</span>
+                  <span className="absolute text-[20px] leading-[20px] ml-[5px] align-middle font-semibold text-[#fff]">{card.percent} %</span>
                 </div>
               </div>
             </div>
@@ -78,7 +79,9 @@ export default function Card(props) {
             </div>
           </div>
         );
-      }):<div className="text-[#fff] text-[16px] flex justify-center">No data found</div>}
+      })}
+      {(props.jobPosts.length==0 && !props.loading) && <div className="text-[#fff] text-[16px] flex justify-center">No data found</div> }
+      {props.loading && <div className="text-[#fff] text-[16px] flex justify-center">Hold on a sec...</div>}
     </div>
   );
 }

@@ -6,10 +6,12 @@ import { actions } from "@/context/State";
 
 export default function Jobs() {
   const [jobPosts, setJobPosts] = useState([]);
+  const [loading, setLoading] = useState(false)
   const {
     state: { search, searchText, getAllPosts, resultsCount }, dispatch
   } = useData();
   async function fetchJobPosts() {
+    setLoading(true)
     try {
       let response = await fetch(
         "https://demo6163739.mockable.io/filteredData",
@@ -23,11 +25,13 @@ export default function Jobs() {
       );
       console.log("response post", response);
       if (response.status == 200) {
+        setLoading(false)
         let data = await response.json();
         console.log("filtered data is", data);
         setJobPosts(data.filteredData);
       }
     } catch (error) {
+      setLoading(false)
       console.log(error);
       setJobPosts([]);
     }
@@ -62,7 +66,7 @@ export default function Jobs() {
           Jobs
         </div>
         <div className="p-2 mt-[25px] pl-[15px]">
-          <Card jobPosts={jobPosts} />
+          <Card jobPosts={jobPosts} loading={loading}/>
         </div>
       </div>
     </div>
