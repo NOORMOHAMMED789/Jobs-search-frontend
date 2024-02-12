@@ -1,8 +1,11 @@
+'use client'
 import Filter from "@/components/Filter";
 import Jobs from "@/components/Jobs";
+import { useData } from "@/context/DataProvider";
 import Image from "next/image";
 
 export default function Home() {
+  const { state: {resultsCount}} = useData() 
   return (
     <div className="flex">
       <div className="w-[340px] ml-[67px] h-[100%] rounded-lg drop-shadow-2xl flex justify-center items-center bg-[#0a0d13]">
@@ -11,7 +14,7 @@ export default function Home() {
       <div className="w-[900px]  ml-[30px]">
         <div className="flex justify-between items-center">
           <div className="text-[#fff] text-[20px] leading-[20px]">
-            SEARCH RESULTS/JOBS - 2049 results
+           {` SEARCH RESULTS/JOBS - ${resultsCount} results`}
           </div>
           <div>
             <div className="flex justify-center items-center text-[#fff] gap-10">

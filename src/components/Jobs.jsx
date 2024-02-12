@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { useData } from "@/context/DataProvider";
+import { actions } from "@/context/State";
 
 export default function Jobs() {
   const [jobPosts, setJobPosts] = useState([]);
   const {
-    state: { search, searchText, getAllPosts },
+    state: { search, searchText, getAllPosts, resultsCount }, dispatch
   } = useData();
   async function fetchJobPosts() {
     try {
@@ -43,8 +44,15 @@ export default function Jobs() {
    let value = filterdData.filter(d=>{
       return d.title.toLowerCase().includes(searchText.toLowerCase())
    })
-   if(searchText!="") setJobPosts(value)
-   else setJobPosts(jobPosts)
+  
+   if(searchText!=""){ 
+    dispatch({type:actions.resultsCount, data:value.length})
+    setJobPosts(value)
+  }
+   else{
+    dispatch({type:actions.resultsCount, data:0})
+    setJobPosts(jobPosts)
+   }
    
   }, [search]);
   return (

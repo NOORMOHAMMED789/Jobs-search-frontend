@@ -15,71 +15,7 @@ export default function Filter() {
     state: { searchText, search, getAllPosts },
     dispatch,
   } = useData();
-  let array = [
-    {
-      name: "Company",
-      companies: [
-        { name: "Amazon", code: "AZ" },
-        { name: "CVS Health", code: "Ch" },
-        { name: "Toyoto", code: "Ty" },
-        { name: "Apple", code: "Ap" },
-      ],
-    },
-    {
-      name: "Location",
-      companies: [
-        { name: "Bengaluru", code: "AZ" },
-        { name: "Vizag", code: "Ch" },
-        { name: "Pune", code: "Ty" },
-        { name: "Hyderabad", code: "Ap" },
-      ],
-    },
-    {
-      name: "Date Posted",
-      companies: [
-        { name: "Last 24 hours", code: "AZ" },
-        { name: "Last 48 hours", code: "Ch" },
-        { name: "Last week", code: "Ty" },
-        { name: "Last month", code: "Ap" },
-      ],
-    },
-    {
-      name: "Salary Range",
-      companies: [
-        { name: "3+ lakhs", code: "AZ" },
-        { name: "5+ lakhs", code: "Ch" },
-        { name: "7+ lakhs", code: "Ty" },
-        { name: "10+ lakhs", code: "Ap" },
-      ],
-    },
-    {
-      name: "Skills",
-      companies: [
-        { name: "React Js", code: "AZ" },
-        { name: "Next Js", code: "Ch" },
-        { name: "Javascript", code: "Ty" },
-        { name: "Node js", code: "Ap" },
-      ],
-    },
-    {
-      name: "Experience",
-      companies: [
-        { name: "1 year", code: "AZ" },
-        { name: "2 years", code: "Ch" },
-        { name: "3 years", code: "Ty" },
-        { name: "4 years", code: "Ap" },
-      ],
-    },
-    {
-      name: "Education",
-      companies: [
-        { name: "B.tech", code: "AZ" },
-        { name: "Degree", code: "Ch" },
-        { name: "M.tech", code: "Ty" },
-        { name: "B.com", code: "Ap" },
-      ],
-    },
-  ];
+
 
   async function fetchData() {
     setLoading(true);
@@ -100,7 +36,6 @@ export default function Filter() {
     } catch (error) {
       setLoading(false);
       console.log(error);
-      setFilters(array);
     }
   }
 
