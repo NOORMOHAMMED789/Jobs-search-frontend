@@ -5,7 +5,7 @@ import React from "react";
 export default function Card(props) {
   return (
     <div>
-      {props.jobPosts.map((card, id) => {
+      {props.jobPosts.length>0 ? props.jobPosts.map((card, id) => {
         return (
           <div
             key={id}
@@ -37,12 +37,6 @@ export default function Card(props) {
                 <div className="text-[#fff] text-[16px] leading-[26px] font-bold">
                   skill match
                 </div>
-                {/* <div className="h-[72px] w-[72px] rounded-full ring-4 flex justify-center items-center pt-[25px] ring-[#5CA4A9]">
-                  <div className="h-[47px] w-[39px] text-[#fff] text-[20px] leading-[20px] font-bold">
-                    {card.percent}%
-                  </div>
-                </div> */}
-                {/* <Image src='\Ellipse 1497.png' width={69} height={69} alt="circle" /> */}
                 <div className="flex relative justify-center items-center z-30">
                   <div className="absolute -z-10 border-[#E83363] border-[3px] h-[69px] w-[69px] rounded-full">
                   </div>
@@ -84,7 +78,7 @@ export default function Card(props) {
             </div>
           </div>
         );
-      })}
+      }):<div className="text-[#fff] text-[16px] flex justify-center">No data found</div>}
     </div>
   );
 }

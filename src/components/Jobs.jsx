@@ -36,32 +36,16 @@ export default function Jobs() {
     fetchJobPosts();
   }, [searchText == ""]);
 
-  async function appliedFilteredJobPosts() {
-    try {
-      let response = await fetch(
-        "https://demo6163739.mockable.io/appliedFilter",
-        {
-          method: "POST",
-          headers: {
-            "Application-Type": "application/json",
-            "Content-Type": "text/xml",
-          },
-        }
-      );
-      console.log("response post", response);
-      if (response.status == 200) {
-        let data = await response.json();
-        console.log("filtered data is", data);
-        setJobPosts(data.filteredData);
-      }
-    } catch (error) {
-      console.log(error);
-      setJobPosts([]);
-    }
-  }
+ 
 
   useEffect(() => {
-    appliedFilteredJobPosts();
+   let filterdData = [...jobPosts]
+   let value = filterdData.filter(d=>{
+      return d.title.toLowerCase().includes(searchText.toLowerCase())
+   })
+   if(searchText!="") setJobPosts(value)
+   else setJobPosts(jobPosts)
+   
   }, [search]);
   return (
     <div className="bg-[#1D2331] rounded-2xl">

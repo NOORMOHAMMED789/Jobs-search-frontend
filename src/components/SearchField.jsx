@@ -25,6 +25,7 @@ export default function SearchField() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          placeholder="Search for job title..."
           value={inputVal}
           onChange={(e) => onSearchChange(e.target.value)}
           className="w-[100%] h-[25px] bg-transparent text-[#fff] text-[18px] outline-none"
