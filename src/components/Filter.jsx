@@ -46,7 +46,6 @@ export default function Filter() {
     console.log("id", id);
     setIdVal(id);
     setSShowSubFilters(true);
-    if (showSubFilters) setSShowSubFilters(false);
   }
   function onInputChange(e, name, id) {
     setCheckVal(name);
@@ -77,12 +76,12 @@ export default function Filter() {
             return (
               <div
                 key={id}
+                onClick={() => openSubFilters(id)}
                 className={`text-[#fff] hover:cursor-pointer hover:${
                   showSubFilters ? "" : "bg-gray-900"
                 } text-[16px] pl-[26px] pb-[10px] relative pt-[15px] border-b w-[100%]`}
               >
                 <label
-                  onClick={() => openSubFilters(id)}
                   className="cursor-pointer"
                 >
                   {item.name}
