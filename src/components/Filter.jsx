@@ -20,7 +20,7 @@ export default function Filter() {
   async function fetchData() {
     setLoading(true);
     try {
-      let response = await fetch("http://demo6163739.mockable.io/data", {
+      let response = await fetch("https://demo6163739.mockable.io/data", {
         method: "GET",
         header: {
           "Application-Type": "application/json",
