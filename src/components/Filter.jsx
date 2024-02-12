@@ -11,8 +11,9 @@ export default function Filter() {
   const [checkVal, setCheckVal] = useState("");
   const [idVal, setIdVal] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [checkedItems, setCheckedItems] = useState([]);
   const {
-    state: { searchText, search, getAllPosts, jobsData },
+    state: { searchText, search, getAllPosts, jobsData,checkedPost },
     dispatch,
   } = useData();
 
@@ -50,13 +51,20 @@ export default function Filter() {
     setIdVal(id)
     if(id==value && showSubFilters) setSShowSubFilters(false)
     else setSShowSubFilters(true);
-    console.log("1111",jobsData,value)
   }
-  function onInputChange(e, name, id) {
-    setCheckVal(name);
-    console.log("2222",name, e.target.checked)
-    dispatch({type:actions.checkedPost,data:name,checked:e.target.checked})
+  function onInputChange(e, name, itemId, mainCatName) {
+    const { value, checked } = e.target;
+    if (checked) {
+      setCheckedItems(prevItems => [...prevItems, name]);
+    } else {
+      setCheckedItems(prevItems => prevItems.filter(item => item !== name));
+    }
   }
+  // console.log("checked items are",checkedItems)
+
+  useEffect(()=>{
+    dispatch({type:actions.checkedPost,data:checkedItems})
+  },[checkedItems])
 
  
 
@@ -66,8 +74,8 @@ export default function Filter() {
         <div className="text-[20px] leading-[25px] pl-[15px] absolute bottom-[10px]">
           Filter by
         </div>
-        <div className="absolute right-[75px] text-[12px] bottom-[10px] leading-[19px]">
-          {`${appliedFilters.length} filters applied`}
+        <div className={`absolute right-[75px] text-[12px] bottom-[10px] leading-[19px] ${checkedItems.length>0?"text-red-500 font-normal":""}`}>
+          {`${checkedItems.length} filters applied`}
         </div>
         <div
           onClick={() => dispatch({ type: actions.searchText, data: "" })}
@@ -102,7 +110,7 @@ export default function Filter() {
                     return (
                       <div key={itemId} className="flex gap-3 pb-2">
                         <input
-                          onChange={(e) => onInputChange(e, comp.name, itemId)}
+                          onChange={(e) => onInputChange(e, comp.name, itemId,item.name)}
                           type="checkbox"
                           value={comp.code}
                           id={comp.name}

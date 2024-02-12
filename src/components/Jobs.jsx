@@ -40,27 +40,44 @@ export default function Jobs() {
 
   useEffect(() => {
     fetchJobPosts();
-  }, [searchText == ""]);
+  }, [searchText==""]);
  
+  function areTextsPresent(obj, searchArray) {
+    for (const searchText of searchArray) {
+      let found = false;
+      for (const key in obj) {
+        if (typeof obj[key] === 'string' && obj[key].includes(searchText)) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        return false; // If any of the search texts are not found, return false
+      }
+    }
+    return true; // If all search texts are found, return true
+  }
 
   useEffect(() => {
-   let filterdData = [...jobPosts]
-   let value = filterdData.filter(d=>{
-      return d.title.toLowerCase().includes(searchText.toLowerCase())
-   })
-  
-   if(searchText!=""){ 
-    dispatch({type:actions.resultsCount, data:value.length})
-    setJobPosts(value)
-  }
-   else{
-    dispatch({type:actions.resultsCount, data:0})
-    setJobPosts(jobPosts)
-   }
-  }, [search]);
+    let filterdData = [...jobPosts]
+    let value = filterdData.filter(d=>{
+        return d.title.toLowerCase().includes(searchText.toLowerCase())
+    })
+    
+    if(searchText!=""){ 
+      dispatch({type:actions.resultsCount, data:value.length})
+      setJobPosts(value)
+    }
+    else{
+      dispatch({type:actions.resultsCount, data:0})
+      setJobPosts(jobPosts)
+    }
+  }, [search,checkedPost]);
 
   useEffect(()=>{
-    console.log("4444",checkedPost)
+    console.log("7777",checkedPost,jobPosts)
+  
+
   },[checkedPost])
 
 

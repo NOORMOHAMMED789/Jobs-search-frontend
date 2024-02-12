@@ -13,7 +13,7 @@ const initialState = {
   getAllPosts: true,
   resultsCount:0,
   jobsData:"",
-  checkedPost:{name:"",checked:false},
+  checkedPost:[],
   
 };
 
@@ -37,7 +37,7 @@ const reducer = (state, action) => {
       res = { ...state, jobsData: data };
       break;
     case actions.checkedPost:
-      res = { ...state, checkedPost: {name: data, checked: checked}}
+      res = { ...state, checkedPost: data }
     default:
       break;
   }
