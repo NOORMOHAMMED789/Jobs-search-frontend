@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 
 export default function Card(props) {
-  console.log("1111",props.jobPosts.length)
+  console.log("props",props)
   return (
     <div>
       {!props.loading && props.jobPosts.map((card, id) => {

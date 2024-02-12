@@ -42,43 +42,79 @@ export default function Jobs() {
     fetchJobPosts();
   }, [searchText==""]);
  
-  function areTextsPresent(obj, searchArray) {
-    for (const searchText of searchArray) {
-      let found = false;
-      for (const key in obj) {
-        if (typeof obj[key] === 'string' && obj[key].includes(searchText)) {
-          found = true;
-          break;
+  function filterJobPostsByCheckedTexts(posts, searchTexts) {
+    if (searchTexts.length === 0) {
+      return posts; // Return all jobPosts if no texts are selected
+    }
+    
+    return posts.filter(post => {
+      for (const text of searchTexts) {
+        let found = false;
+        for (const key in post) {
+          if (post.hasOwnProperty(key) && typeof post[key] === 'string' && post[key].toLowerCase().includes(text.toLowerCase())) {
+            found = true;
+            break;
+          }
+        }
+        if (found) {
+          return true; // If any of the search texts are found in the post, return true
         }
       }
-      if (!found) {
-        return false; // If any of the search texts are not found, return false
-      }
-    }
-    return true; // If all search texts are found, return true
+      return false; // If none of the search texts are found in the post, return false
+    });
   }
-
-  useEffect(() => {
-    let filterdData = [...jobPosts]
-    let value = filterdData.filter(d=>{
-        return d.title.toLowerCase().includes(searchText.toLowerCase())
-    })
-    
-    if(searchText!=""){ 
-      dispatch({type:actions.resultsCount, data:value.length})
-      setJobPosts(value)
-    }
-    else{
-      dispatch({type:actions.resultsCount, data:0})
-      setJobPosts(jobPosts)
-    }
-  }, [search,checkedPost]);
-
-  useEffect(()=>{
-    console.log("7777",checkedPost,jobPosts)
   
 
-  },[checkedPost])
+  
+
+useEffect(() => {
+  let filteredData = [...jobPosts];
+
+
+  // if (searchText !== "") {
+  //   filteredData = filteredData.filter(post =>
+  //     post.title.toLowerCase().includes(searchText.toLowerCase())
+  //   );
+  //   dispatch({ type: actions.resultsCount, data: filteredData.length });
+  // } else {
+  //   dispatch({ type: actions.resultsCount, data: 0 });
+  // }
+
+  // // Apply additional filtering based on checkedPost
+  // if (checkedPost.length > 0) {
+  //   filteredData = filterJobPostsByCheckedTexts(filteredData, checkedPost);
+  // }
+
+  // // Set the jobPosts state with the filtered data
+  // setJobPosts(filteredData);
+}, [search, searchText, checkedPost]);
+
+useEffect(() => {
+  let filteredData = [...jobPosts];
+
+  // Apply additional filtering based on checkedPost
+  const filteredPosts = filterJobPostsByCheckedTexts(jobPosts, checkedPost);
+
+  // Set jobPosts state based on filtered data
+  if (searchText !== "") {
+    filteredData = filteredData.filter(post =>
+      post.title.toLowerCase().includes(searchText.toLowerCase())
+    );
+    dispatch({ type: actions.resultsCount, data: filteredData.length });
+  } else if (checkedPost.length > 0) {
+    setJobPosts(filteredPosts);
+    dispatch({ type: actions.resultsCount, data: filteredPosts.length });
+  } else {
+    setJobPosts(jobPosts); // Set jobPosts to all jobPosts
+    dispatch({ type: actions.resultsCount, data: jobPosts.length });
+  }
+}, [search, searchText, checkedPost, jobPosts]);
+
+
+
+  console.log("checked posts are",jobPosts)
+ 
+  
 
 
   return (
