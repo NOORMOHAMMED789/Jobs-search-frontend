@@ -67,6 +67,11 @@ export default function Filter() {
   },[checkedItems])
 
  
+  function handleClearFilter(){
+    dispatch({ type: actions.searchText, data: "" })
+    setCheckedItems([])
+    dispatch({type:actions.checkedPost, data:checkedItems})
+  }
 
   return (
     <div className="w-[100%] dark-shadow-2xl">
@@ -78,7 +83,7 @@ export default function Filter() {
           {`${checkedItems.length} filters applied`}
         </div>
         <div
-          onClick={() => dispatch({ type: actions.searchText, data: "" })}
+          onClick={handleClearFilter}
           className="underline absolute right-[25px] bottom-[12px] cursor-pointer"
         >
           Clear all

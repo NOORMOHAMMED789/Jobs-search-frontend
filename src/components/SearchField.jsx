@@ -15,6 +15,7 @@ export default function SearchField() {
     setInputVal(val);
     dispatch({ type: actions.searchText, data: val });
     if (val == "") dispatch({ type: actions.search, data: false });
+
   }
   function handleSubmit(e) {
     e.preventDefault();
