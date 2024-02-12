@@ -47,7 +47,7 @@ export default function Filter() {
         return d
       }
     })
-    setIdVal(id);
+    setIdVal(id)
     if(id==value && showSubFilters) setSShowSubFilters(false)
     else setSShowSubFilters(true);
     console.log("1111",jobsData,value)
