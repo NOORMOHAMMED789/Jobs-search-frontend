@@ -8,7 +8,7 @@ export default function Jobs() {
   const [jobPosts, setJobPosts] = useState([]);
   const [loading, setLoading] = useState(false)
   const {
-    state: { search, searchText, getAllPosts, resultsCount }, dispatch
+    state: { search, searchText, getAllPosts, resultsCount, jobsData }, dispatch
   } = useData();
   async function fetchJobPosts() {
     setLoading(true)
@@ -44,6 +44,7 @@ export default function Jobs() {
  
 
   useEffect(() => {
+    dispatch({type:actions.jobsData, data:jobPosts})
    let filterdData = [...jobPosts]
    let value = filterdData.filter(d=>{
       return d.title.toLowerCase().includes(searchText.toLowerCase())

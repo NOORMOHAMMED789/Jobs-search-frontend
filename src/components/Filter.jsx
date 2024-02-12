@@ -12,7 +12,7 @@ export default function Filter() {
   const [idVal, setIdVal] = useState(0);
   const [loading, setLoading] = useState(false);
   const {
-    state: { searchText, search, getAllPosts },
+    state: { searchText, search, getAllPosts, jobsData },
     dispatch,
   } = useData();
 
@@ -29,7 +29,6 @@ export default function Filter() {
       });
       if (response.status == 200) {
         let data = await response.json();
-        console.log("data is", data);
         setLoading(false);
         setFilters(data.filters);
       }
@@ -42,13 +41,20 @@ export default function Filter() {
   useEffect(() => {
     fetchData();
   }, []);
-  function openSubFilters(id) {
-    console.log("id", id);
+  function openSubFilters(name,id) {
+    let value = filters.findIndex(d=>{
+      if(d.name==name){
+        return d
+      }
+    })
     setIdVal(id);
-    setSShowSubFilters(true);
+    if(id==value && showSubFilters) setSShowSubFilters(false)
+    else setSShowSubFilters(true);
+    console.log("1111",name,jobsData,value)
   }
   function onInputChange(e, name, id) {
     setCheckVal(name);
+    console.log("2222",name, e.target.checked)
     if (e.target.checked) dispatch({ type: actions.search, data: !search });
     else dispatch({ type: actions.searchText, data: "" });
   }
@@ -76,10 +82,8 @@ export default function Filter() {
             return (
               <div
                 key={id}
-                onClick={() => openSubFilters(id)}
-                className={`text-[#fff] hover:cursor-pointer hover:${
-                  showSubFilters ? "" : "bg-gray-900"
-                } text-[16px] pl-[26px] pb-[10px] relative pt-[15px] border-b w-[100%]`}
+                onClick={() => openSubFilters(item.name,id)}
+                className={`text-[#fff] hover:cursor-pointer hover:${showSubFilters?"":"bg-gray-800"} text-[16px] pl-[26px] pb-[10px] relative pt-[15px] border-b w-[100%]`}
               >
                 <label
                   className="cursor-pointer"
@@ -100,8 +104,10 @@ export default function Filter() {
                           onChange={(e) => onInputChange(e, comp.name, itemId)}
                           type="checkbox"
                           value={comp.code}
+                          id={comp.name}
+                          
                         />
-                        <label id={id} key={id}>
+                        <label className="cursor-pointer hover:text-gray-500" key={id} htmlFor={comp.name}>
                           {comp.name}
                         </label>
                       </div>

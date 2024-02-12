@@ -2,14 +2,16 @@ const actions = {
   searchText: "SEARCH_TEXT",
   search: "SEARCH",
   getAllPosts: "GET_ALL_POSTS",
-  resultsCount:"RESULTS_COUNT"
+  resultsCount:"RESULTS_COUNT",
+  jobsData:"JOBS_DATA"
 };
 
 const initialState = {
   searchText: "",
   search: false,
   getAllPosts: true,
-  resultsCount:0
+  resultsCount:0,
+  jobsData:""
 };
 
 const reducer = (state, action) => {
@@ -27,6 +29,9 @@ const reducer = (state, action) => {
       break;
     case actions.resultsCount:
       res = { ...state, resultsCount: data};
+      break;
+    case actions.jobsData:
+      res = { ...state, jobsData: data };
       break;
     default:
       break;
