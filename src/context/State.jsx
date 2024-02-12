@@ -3,7 +3,8 @@ const actions = {
   search: "SEARCH",
   getAllPosts: "GET_ALL_POSTS",
   resultsCount:"RESULTS_COUNT",
-  jobsData:"JOBS_DATA"
+  jobsData:"JOBS_DATA",
+  checkedPost:"CHECKED_POST",
 };
 
 const initialState = {
@@ -11,11 +12,13 @@ const initialState = {
   search: false,
   getAllPosts: true,
   resultsCount:0,
-  jobsData:""
+  jobsData:"",
+  checkedPost:{name:"",checked:false},
+  
 };
 
 const reducer = (state, action) => {
-  const { type, data } = action;
+  const { type, data, checked } = action;
   let res = state;
   switch (type) {
     case actions.searchText:
@@ -31,8 +34,10 @@ const reducer = (state, action) => {
       res = { ...state, resultsCount: data};
       break;
     case actions.jobsData:
-      res = { ...state, jobsData:data };
+      res = { ...state, jobsData: data };
       break;
+    case actions.checkedPost:
+      res = { ...state, checkedPost: {name: data, checked: checked}}
     default:
       break;
   }

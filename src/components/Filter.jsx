@@ -55,8 +55,7 @@ export default function Filter() {
   function onInputChange(e, name, id) {
     setCheckVal(name);
     console.log("2222",name, e.target.checked)
-    if (e.target.checked) dispatch({ type: actions.search, data: !search });
-    else dispatch({ type: actions.searchText, data: "" });
+    dispatch({type:actions.checkedPost,data:name,checked:e.target.checked})
   }
 
  

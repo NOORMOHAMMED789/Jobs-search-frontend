@@ -7,8 +7,9 @@ import { actions } from "@/context/State";
 export default function Jobs() {
   const [jobPosts, setJobPosts] = useState([]);
   const [loading, setLoading] = useState(false)
+  const [checkedPostsData, setCheckedPostData] = useState([])
   const {
-    state: { search, searchText, getAllPosts, resultsCount, jobsData }, dispatch
+    state: { search, searchText, checkedPost }, dispatch
   } = useData();
   async function fetchJobPosts() {
     setLoading(true)
@@ -40,11 +41,9 @@ export default function Jobs() {
   useEffect(() => {
     fetchJobPosts();
   }, [searchText == ""]);
-
  
 
   useEffect(() => {
-    dispatch({type:actions.jobsData, data:jobPosts})
    let filterdData = [...jobPosts]
    let value = filterdData.filter(d=>{
       return d.title.toLowerCase().includes(searchText.toLowerCase())
@@ -58,8 +57,13 @@ export default function Jobs() {
     dispatch({type:actions.resultsCount, data:0})
     setJobPosts(jobPosts)
    }
-   
   }, [search]);
+
+  useEffect(()=>{
+    console.log("4444",checkedPost)
+  },[checkedPost])
+
+
   return (
     <div className="bg-[#1D2331] rounded-2xl">
       <div className="mt-[30px] p-10">
