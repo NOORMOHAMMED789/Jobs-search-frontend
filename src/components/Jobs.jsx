@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { useData } from "@/context/DataProvider";
 import { actions } from "@/context/State";
+import cloneDeep from 'loadsh'
 
 export default function Jobs() {
   const [jobPosts, setJobPosts] = useState([]);
@@ -60,15 +61,37 @@ export default function Jobs() {
     });
   }
 
-  const filteredPosts = filterJobPostsByCheckedTexts(jobPosts, checkedPost);
-  console.log("Filtered posts:", filteredPosts);
+  // useEffect(() => {
+  //   let filteredData = cloneDeep(jobPosts)
+  
+  //   if (searchText !== "") {
+  //     filteredData = filteredData.filter(post =>
+  //       post.title.toLowerCase().includes(searchText.toLowerCase())
+  //     );
+  //   } else if (checkedPost.length > 0) {
+  //     const filteredPosts = filterJobPostsByCheckedTexts(jobPosts, checkedPost);
+  //     setJobPosts(filteredPosts);
+  //     dispatch({ type: actions.resultsCount, data: filteredPosts.length });
+  //   } else {
+  //     dispatch({ type: actions.resultsCount, data: jobPosts.length });
+  //     setJobPosts(jobPosts); // Set jobPosts state to all jobPosts
+  //   }
+  // }, [search, searchText, checkedPost, jobPosts]);
+  
+  
 
   
 
   useEffect(() => {
     let filterdData = [...jobPosts]
     let value = filterdData.filter(d=>{
-        return d.title.toLowerCase().includes(searchText.toLowerCase())
+        if(d.address1.toLowerCase().includes(searchText.toLowerCase()) || 
+          d.address2.toLowerCase().includes(searchText.toLowerCase()) ||
+          d.date.toLowerCase().includes(searchText.toLowerCase()) || 
+          d.title.toLowerCase().includes(searchText.toLowerCase())
+         ){
+          return d
+        }
     })
     
     if(searchText!=""){ 
