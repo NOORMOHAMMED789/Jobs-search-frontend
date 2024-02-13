@@ -84,17 +84,18 @@ export default function Jobs() {
 
   useEffect(() => {
     let filterdData = [...jobPosts]
+    console.log("checkedPost",checkedPost)
     let value = filterdData.filter(d=>{
         if(d.address1.toLowerCase().includes(searchText.toLowerCase()) || 
           d.address2.toLowerCase().includes(searchText.toLowerCase()) ||
           d.date.toLowerCase().includes(searchText.toLowerCase()) || 
-          d.title.toLowerCase().includes(searchText.toLowerCase())
-         ){
-          return d
+          d.title.toLowerCase().includes(searchText.toLowerCase()) 
+        ){
+          return d  
         }
     })
     
-    if(searchText!=""){ 
+    if(searchText!="" || checkedPost.length>0){ 
       dispatch({type:actions.resultsCount, data:value.length})
       setJobPosts(value)
     }
