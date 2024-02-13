@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { useData } from "@/context/DataProvider";
 import { actions } from "@/context/State";
-import cloneDeep from 'loadsh'
 
 export default function Jobs() {
   const [jobPosts, setJobPosts] = useState([]);
