@@ -43,10 +43,6 @@ export default function Jobs() {
   }, [searchText==""]);
  
   function filterJobPostsByCheckedTexts(posts, searchTexts) {
-    if (searchTexts.length === 0) {
-      return posts; // Return all jobPosts if no texts are selected
-    }
-    
     return posts.filter(post => {
       for (const text of searchTexts) {
         let found = false;
@@ -63,37 +59,14 @@ export default function Jobs() {
       return false; // If none of the search texts are found in the post, return false
     });
   }
-  
+
+  const filteredPosts = filterJobPostsByCheckedTexts(jobPosts, checkedPost);
+  console.log("Filtered posts:", filteredPosts);
 
   
-
-useEffect(() => {
-  let filteredData = [...jobPosts];
-
-
-  // if (searchText !== "") {
-  //   filteredData = filteredData.filter(post =>
-  //     post.title.toLowerCase().includes(searchText.toLowerCase())
-  //   );
-  //   dispatch({ type: actions.resultsCount, data: filteredData.length });
-  // } else {
-  //   dispatch({ type: actions.resultsCount, data: 0 });
-  // }
-
-  // // Apply additional filtering based on checkedPost
-  // if (checkedPost.length > 0) {
-  //   filteredData = filterJobPostsByCheckedTexts(filteredData, checkedPost);
-  // }
-
-  // // Set the jobPosts state with the filtered data
-  // setJobPosts(filteredData);
-}, [search, searchText, checkedPost]);
-
 
   useEffect(() => {
     let filterdData = [...jobPosts]
-    const filteredPosts = filterJobPostsByCheckedTexts(jobPosts, checkedPost);
-    console.log("Filtered posts:", filteredPosts);
     let value = filterdData.filter(d=>{
         return d.title.toLowerCase().includes(searchText.toLowerCase())
     })
@@ -101,19 +74,13 @@ useEffect(() => {
     if(searchText!=""){ 
       dispatch({type:actions.resultsCount, data:value.length})
       setJobPosts(value)
-    }else if(!!filteredPosts){
-      setJobPosts(filteredPosts)
     }
     else{
       dispatch({type:actions.resultsCount, data:0})
       setJobPosts(jobPosts)
     }
   }, [search,checkedPost]);
-
-  console.log("checked posts are",jobPosts)
- 
   
-
 
   return (
     <div className="bg-[#1D2331] rounded-2xl">
